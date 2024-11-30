@@ -1,6 +1,7 @@
 import Image from "next/image";
 import localFont from "next/font/local";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -67,6 +68,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+      <Footer/>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
