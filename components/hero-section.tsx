@@ -16,7 +16,7 @@ export default function HeroSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="relative bg-white overflow-hidden">
+    <div className="relative w-full h-full">
       <Image
         src="/heroSectionBackground.jpg"
         alt="Background"
