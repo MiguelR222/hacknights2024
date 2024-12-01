@@ -7,14 +7,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'GET') {
     try {
-      const listings = await Listing.find({});
-      res.status(200).json(listings);
+      const { listingId } = req.query; // Get listingId from query parameters
+
+      if (listingId) {
+        // If listingId is provided, find the listing that matches it
+        const listing = await Listing.findById(listingId);
+
+        if (!listing) {
+          return res.status(404).json({ error: 'Listing not found', success: false });
+        }
+
+        return res.status(200).json({ data: listing, success: true });
+      } else {
+        // If no listingId, fetch all listings
+        const listings = await Listing.find({});
+
+        if (!listings.length) {
+          return res.status(404).json({ error: 'No listings found', success: false });
+        }
+
+        return res.status(200).json({ data: listings, success: true });
+      }
     } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch listings' });
+      console.error(error);
+      return res.status(500).json({ error: 'Failed to fetch listings', success: false });
     }
-  } else if (req.method === 'POST') {
+  }
+
+  else if (req.method === 'POST') {
     try {
-     const { userId, name, price, description, category, components } = req.body;
+      const { userId, name, price, description, category, components } = req.body;
       const newListing = await Listing.create({
         userId,
         name,
@@ -24,11 +46,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         components
       });
       await newListing.save();
-      res.status(201).json(newListing);
+      return res.status(201).json({ data: newListing, success: true });
     } catch (error) {
-      res.status(500).json({ error: 'Failed to create listing' });
+      console.error(error);
+      return res.status(500).json({ error: 'Failed to create listing', success: false });
     }
-  } else {
-    res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  else {
+    return res.status(405).json({ error: 'Method not allowed', success: false });
   }
 }

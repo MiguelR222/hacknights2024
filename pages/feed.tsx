@@ -1,116 +1,77 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
-import Header from '@/components/Header';
-import { ChevronDown } from 'lucide-react';
+import React, { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
+import Header from '@/components/Header'
+import { ChevronDown } from 'lucide-react'
+import Footer from '@/components/Footer'
+import { Card, CardContent } from "@/components/ui/card"
+import { useRouter } from 'next/navigation'
 
 interface Component {
-  name: string;
-  description: string;
-  quantity: number;
+  name: string
+  description: string
+  quantity: number
 }
 
 interface Listing {
-  name: string;
-  price: number;
-  description: string;
-  category: string;
-  components: Component[];
+  _id: string
+  name: string
+  price: number
+  description: string
+  category: string
+  components: Component[]
+  poster: string
 }
 
-const categories = ['all', 'tools', 'electronics', 'mobility device', 'outdoor', 'miscellaneous'];
+const categories = ['all', 'tools', 'electronics', 'mobility device', 'outdoor', 'miscellaneous']
 
 export default function Feed() {
-  const [listings, setListings] = useState<Listing[]>([]);
-  const [filteredListings, setFilteredListings] = useState<Listing[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { data: session } = useSession();
+  const [listings, setListings] = useState<Listing[]>([])
+  const [filteredListings, setFilteredListings] = useState<Listing[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string>('all')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const { data: session } = useSession()
+  const router = useRouter()
 
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        // Mock data
-        const fetchedListings: Listing[] = [
-          {
-            name: 'Hammer',
-            price: 10,
-            description: 'A sturdy hammer for all your construction needs.',
-            category: 'tools',
-            components: [
-              { name: 'Handle', description: 'Wooden handle', quantity: 1 },
-              { name: 'Head', description: 'Steel head', quantity: 1 }
-            ]
-          },
-          {
-            name: 'Laptop',
-            price: 1000,
-            description: 'A high-performance laptop for work and play.',
-            category: 'electronics',
-            components: [
-              { name: 'Battery', description: 'Lithium-ion battery', quantity: 1 },
-              { name: 'Charger', description: 'Power adapter', quantity: 1 }
-            ]
-          },
-          {
-            name: 'Bicycle',
-            price: 150,
-            description: 'A mountain bike for outdoor adventures.',
-            category: 'mobility device',
-            components: [
-              { name: 'Frame', description: 'Aluminum frame', quantity: 1 },
-              { name: 'Wheels', description: '26-inch wheels', quantity: 2 }
-            ]
-          },
-          {
-            name: 'Tent',
-            price: 50,
-            description: 'A spacious tent for camping trips.',
-            category: 'outdoor',
-            components: [
-              { name: 'Poles', description: 'Fiberglass poles', quantity: 4 },
-              { name: 'Fabric', description: 'Waterproof fabric', quantity: 1 }
-            ]
-          },
-          {
-            name: 'Misc Item',
-            price: 5,
-            description: 'A miscellaneous item.',
-            category: 'miscellaneous',
-            components: [
-              { name: 'Part', description: 'Some part', quantity: 1 }
-            ]
-          }
-        ];
+        const response = await fetch('/api/listings')
+        const data = await response.json()
 
-        setListings(fetchedListings);
-        setFilteredListings(fetchedListings);
+        if (response.ok) {
+          setListings(data.data)
+          setFilteredListings(data.data)
+        } else {
+          console.error('Failed to fetch listings:', data.error)
+        }
       } catch (error) {
-        console.error('Failed to fetch listings', error);
+        console.error('Failed to fetch listings', error)
       }
-    };
+    }
 
-    fetchListings();
-  }, []);
+    fetchListings()
+  }, [])
 
   useEffect(() => {
     if (selectedCategory === 'all') {
-      setFilteredListings(listings);
+      setFilteredListings(listings)
     } else {
-      setFilteredListings(listings.filter(listing => listing.category === selectedCategory));
+      setFilteredListings(listings.filter(listing => listing.category === selectedCategory))
     }
-  }, [selectedCategory, listings]);
+  }, [selectedCategory, listings])
 
   const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    setIsDropdownOpen(false);
-  };
+    setSelectedCategory(category)
+    setIsDropdownOpen(false)
+  }
 
   return (
-    <div className="min-h-screen bg-[#FAF9F9]">
+    <div className="min-h-screen flex flex-col bg-[#FAF9F9]">
       <Header />
-      <div className="container mx-auto p-4 sm:p-6">
+      <div className="container mx-auto p-4 sm:p-6 flex-grow">
         <div className="flex flex-col sm:flex-row">
           {/* Mobile dropdown filter */}
           <div className="sm:hidden mb-4">
@@ -145,7 +106,7 @@ export default function Feed() {
               {categories.map((category) => (
                 <li key={category} className="mb-2">
                   <button
-                    onClick={() => setSelectedCategory(category)}
+                    onClick={() => handleCategoryChange(category)}
                     className={`w-full text-left p-2 rounded ${
                       selectedCategory === category
                         ? 'bg-[#BEE3DB] text-[#555B6E] font-bold'
@@ -166,27 +127,40 @@ export default function Feed() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {filteredListings.map((listing) => (
-                <div key={listing.name} className="bg-[#BEE3DB] p-4 sm:p-6 rounded-lg shadow-md transition-transform hover:scale-105">
-                  <h3 className="text-lg sm:text-xl font-semibold text-[#555B6E] mb-2">{listing.name}</h3>
-                  <p className="text-sm sm:text-base text-[#555B6E] mb-3">{listing.description}</p>
-                  <p className="text-[#555B6E] font-bold mb-4">Price: ${listing.price}</p>
-                  <div>
-                    <h4 className="text-md sm:text-lg font-semibold text-[#555B6E] mb-2">Components:</h4>
-                    <ul className="list-disc list-inside">
-                      {listing.components.map((component, index) => (
-                        <li key={index} className="text-sm sm:text-base text-[#555B6E]">
-                          {component.name} ({component.quantity})
-                        </li>
-                      ))}
-                    </ul>
+                <Card 
+                  key={listing._id} 
+                  className="overflow-hidden cursor-pointer sm:cursor-default"
+                  onClick={() => router.push(`/product?listingId=${listing._id}`)}
+                >
+                  <div className="relative aspect-[3/4] group">
+                    <Image
+                      src={listing.poster || 'https://placehold.co/300x400'}
+                      alt={listing.name}
+                      layout="fill"
+                      objectFit="cover"
+                      className="transition-transform group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-start justify-end p-4">
+                      <h3 className="text-white text-lg font-semibold mb-2">{listing.name}</h3>
+                      <button 
+                        className="bg-[#BEE3DB] text-[#555B6E] px-4 py-2 rounded hidden sm:block"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          router.push(`/product?listingId=${listing._id}`);
+                        }}
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
-                </div>
+                </Card>
               ))}
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
-  );
+  )
 }
 

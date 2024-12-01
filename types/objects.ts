@@ -1,4 +1,5 @@
 export interface Listing {
+    _id: string;
     userId: string;
     name: string;
     price: number;
@@ -10,9 +11,11 @@ export interface Listing {
         quantity: number;
         required: boolean;
     };
+    status: string;
 }
 
 export interface Purchase {
+    _id: string
     renterUserId: string;
     clientUserId: string;
     productPrice: number;
@@ -21,7 +24,7 @@ export interface Purchase {
 }
 
 export interface User {
-    id: string;
+    _id: string;
     name: string;
     email: string;
     image: string;
