@@ -44,12 +44,12 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-gray-800 w-full">
+    <header className="bg-emerald-700 w-full">
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between p-1 lg:px-8"
       >
-        <div className="flex items-center justify-between px-4 p-6 lg:px-8">
+        <div className="flex items-center justify-between px-2 p-1 lg:px-8">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img alt="" src="/props/logo_blanco_h.svg" className="size-3/5 " />
