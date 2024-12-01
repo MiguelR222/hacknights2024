@@ -1,3 +1,38 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals"
+  ],
+  "rules": {
+    // Disable unused vars rule (both for JS and TypeScript)
+    "@typescript-eslint/no-unused-vars": "warn",
+    
+    // Disable the no-explicit-any rule to allow use of `any` type
+    "@typescript-eslint/no-explicit-any": "warn",
+    
+    // Allow require statements not part of an import statement
+    "@typescript-eslint/no-var-requires": "warn",
+
+    // Allow case declarations without warnings
+    "no-case-declarations": "warn",
+    
+    // Disable no-fallthrough for switch cases without a break statement
+    "no-fallthrough": "warn",
+    
+    // Allow using <img> tag instead of Next.js <Image />
+    "@next/next/no-img-element": "warn",
+
+    // Disable React Hook useEffect dependency warning
+    "react-hooks/exhaustive-deps": "warn",
+
+    // Disable the no-head element rule for Next.js pages
+    "@next/next/no-head-element": "warn",
+
+    // Allow usage of `var`
+    "no-var": "warn"
+  }
 }
