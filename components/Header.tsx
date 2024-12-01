@@ -24,13 +24,13 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import {LoginButton} from './login-button'; // Import the LoginButton component
 
-const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
-]
+// const products = [
+// { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
+// { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
+// { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
+// { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
+// { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+// ]
 const callsToAction = [
   { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
   { name: 'Contact sales', href: '#', icon: PhoneIcon },
@@ -40,9 +40,9 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white w-full">
+    <header className="bg-green-600 w-full">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-        <div className="flex lg:flex-1 items-center">
+        <div className="flex items-center justify-between px-4 p-6 lg:px-8">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img
@@ -52,7 +52,7 @@ const Header = () => {
             />
           </a>
           <div className="flex ml-5 items-center">
-            <Popover className="relative">
+            {/* <Popover className="relative">
               <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
                 Product
                 <ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
@@ -94,7 +94,7 @@ const Header = () => {
                   ))}
                 </div>
               </PopoverPanel>
-            </Popover>
+            </Popover> */}
           </div>
         </div>
         <div className="flex lg:hidden">
@@ -108,13 +108,13 @@ const Header = () => {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="flex text-sm/6 font-semibold text-gray-900 items-center">
+          <a href="#" className="flex text-sm/6 font-semibold text-white items-center">
             Features
           </a>
-          <a href="#" className="flex text-sm/6 font-semibold text-gray-900 items-center">
+          <a href="#" className="flex text-sm/6 font-semibold text-white items-center">
             Marketplace
           </a>
-          <a href="#" className="flex text-sm/6 font-semibold text-gray-900 items-center">
+          <a href="#" className="flex text-sm/6 font-semibold text-white items-center">
             Company
           </a>
           <LoginButton/>
@@ -146,7 +146,7 @@ const Header = () => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                <Disclosure as="div" className="-mx-3">
+                {/* <Disclosure as="div" className="-mx-3">
                   <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
                     Product
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
@@ -163,12 +163,12 @@ const Header = () => {
                       </DisclosureButton>
                     ))}
                   </DisclosurePanel>
-                </Disclosure>
+                </Disclosure> */}
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
-                  Features
+                  F
                 </a>
                 <a
                   href="#"
