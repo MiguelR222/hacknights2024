@@ -23,7 +23,7 @@ export default function HeroSection() {
         layout="fill"
         objectFit="cover"
         quality={100}
-        className="absolute inset-0 z-0 opacity-35"
+        className="relative inset-0 z-0 opacity-35"
       />
       <div className="relative isolate px-6 pt-14 pb-20 lg:px-8">
         <div
