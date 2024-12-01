@@ -91,7 +91,7 @@ const CheckoutPage = ({ amount, listingId }: { amount: number; listingId: string
       elements,
       clientSecret: data.clientSecret,
       confirmParams: {
-        return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
+        return_url: `https://hacknights2024.vercel.app/payment-success?amount=${amount}`,
       },
     });
 
