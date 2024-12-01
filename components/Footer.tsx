@@ -4,10 +4,9 @@ import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 export default function Footer() {
   const companyName = "TodoPrestado."; // Nombre de la empresa
   const navigationLinks = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Contact", href: "/contact" },
+    { label: "Inicio", href: "/" },
+    { label: "Sobre nosotros", href: "/" },
+    { label: "Contactanos", href: "/" },
   ];
   const socialLinks = [
     { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
@@ -18,7 +17,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-100 py-3">
+    <footer className="bg-gray-100 py-3 z-10">
     <div className="container mx-auto px-4">
       <div className="flex flex-col items-center space-y-4">
         <nav>
