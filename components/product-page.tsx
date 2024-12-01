@@ -18,7 +18,7 @@ interface Listing {
   description: string;
   category: string;
   components: Component[];
-  imageUrl: string;
+  poster: string;
 }
 
 // Fetch listing from API endpoint
@@ -78,9 +78,9 @@ export default function ProductPage() {
         <div className="bg-[#BEE3DB] rounded-lg shadow-lg overflow-hidden">
           <div className="md:flex">
             <div className="md:flex-shrink-0">
-              {listing.imageUrl && (
+              {listing.poster && (
                 <Image
-                  src={listing.imageUrl}
+                  src={listing.poster}
                   alt={listing.name}
                   width={400}
                   height={400}
