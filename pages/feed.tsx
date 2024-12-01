@@ -3,11 +3,19 @@
 import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import Header from '@/components/Header'
+import { useRouter } from 'next/navigation'
 import { ChevronDown } from 'lucide-react'
+import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Card, CardContent } from "@/components/ui/card"
-import { useRouter } from 'next/navigation'
+import { Button } from "@/components/ui/button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 interface Component {
   name: string
@@ -31,7 +39,6 @@ export default function Feed() {
   const [listings, setListings] = useState<Listing[]>([])
   const [filteredListings, setFilteredListings] = useState<Listing[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const { data: session } = useSession()
   const router = useRouter()
 
@@ -65,100 +72,64 @@ export default function Feed() {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category)
-    setIsDropdownOpen(false)
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF9F9]">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      <div className="container mx-auto p-4 sm:p-6 flex-grow">
-        <div className="flex flex-col sm:flex-row">
-          {/* Mobile dropdown filter */}
-          <div className="sm:hidden mb-4">
-            <div className="relative">
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="w-full bg-[#BEE3DB] text-[#555B6E] font-bold p-2 rounded flex justify-between items-center"
-              >
-                {selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
-                <ChevronDown className={`ml-2 h-4 w-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              {isDropdownOpen && (
-                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      onClick={() => handleCategoryChange(category)}
-                      className="block w-full text-left px-4 py-2 text-[#555B6E] hover:bg-[#BEE3DB] hover:bg-opacity-50"
-                    >
-                      {category.charAt(0).toUpperCase() + category.slice(1)}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Desktop sidebar filter */}
-          <div className="hidden sm:block w-1/4 pr-6">
-            <h2 className="text-xl font-bold mb-4 text-[#555B6E]">Categories</h2>
-            <ul>
-              {categories.map((category) => (
-                <li key={category} className="mb-2">
-                  <button
-                    onClick={() => handleCategoryChange(category)}
-                    className={`w-full text-left p-2 rounded ${
-                      selectedCategory === category
-                        ? 'bg-[#BEE3DB] text-[#555B6E] font-bold'
-                        : 'text-[#555B6E] hover:bg-[#BEE3DB] hover:bg-opacity-50'
-                    }`}
-                  >
+      <main className="flex-grow container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row lg:space-x-8">
+          <aside className="w-full lg:w-1/4 mb-8 lg:mb-0">
+            <h2 className="text-2xl font-bold mb-4 text-foreground">Categories</h2>
+            <Select onValueChange={handleCategoryChange} value={selectedCategory}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
                     {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </aside>
 
-          {/* Main content */}
-          <div className="w-full sm:w-3/4">
-            <h2 className="text-2xl font-bold mb-6 text-[#555B6E] capitalize">
+          <section className="w-full lg:w-3/4">
+            <h2 className="text-3xl font-bold mb-6 text-foreground capitalize">
               {selectedCategory === 'all' ? 'All Items' : selectedCategory}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredListings.map((listing) => (
                 <Card 
                   key={listing._id} 
-                  className="overflow-hidden cursor-pointer sm:cursor-default"
-                  onClick={() => router.push(`/product?listingId=${listing._id}`)}
+                  className="overflow-hidden transition-shadow hover:shadow-lg"
                 >
-                  <div className="relative aspect-[3/4] group">
+                  <div className="relative aspect-square">
                     <Image
-                      src={listing.poster || 'https://placehold.co/300x400'}
+                      src={listing.poster || '/placeholder.svg'}
                       alt={listing.name}
                       layout="fill"
                       objectFit="cover"
-                      className="transition-transform group-hover:scale-110"
+                      className="transition-transform hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-start justify-end p-4">
-                      <h3 className="text-white text-lg font-semibold mb-2">{listing.name}</h3>
-                      <button 
-                        className="bg-[#BEE3DB] text-[#555B6E] px-4 py-2 rounded hidden sm:block"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          router.push(`/product?listingId=${listing._id}`);
-                        }}
-                      >
-                        View Details
-                      </button>
-                    </div>
                   </div>
+                  <CardContent className="p-4">
+                    <h3 className="text-lg font-semibold mb-2 text-foreground">{listing.name}</h3>
+                    <p className="text-sm text-muted-foreground mb-4">{listing.description.slice(0, 100)}...</p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-lg font-bold text-foreground">${listing.price.toFixed(2)}</span>
+                      <Button onClick={() => router.push(`/product?listingId=${listing._id}`)}>
+                        View Details
+                      </Button>
+                    </div>
+                  </CardContent>
                 </Card>
               ))}
             </div>
-          </div>
+          </section>
         </div>
-      </div>
+      </main>
       <Footer />
     </div>
   )
