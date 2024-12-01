@@ -1,4 +1,5 @@
 export interface Listing {
+    userId: string;
     name: string;
     price: number;
     description: string;

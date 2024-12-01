@@ -22,7 +22,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import {LoginButton} from './login-button'; // Import the LoginButton component
+import {LoginButton} from './login-button'; 
 
 // const products = [
 // { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
