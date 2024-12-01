@@ -11,7 +11,7 @@ export interface IListing extends Document {
     quantity: number;
   }>;
     status: string;
-    poster: string;
+    poster?: string;
     imageGallery?: Array<string>;
 }
 
@@ -39,7 +39,7 @@ const ListingSchema: Schema = new Schema({
         default: 'available',
         required: true,
     },
-    poster: { type: String, required: true },
+    poster: { type: String, required: false },
     imageGallery: { type: [String], required: false },
 });
 

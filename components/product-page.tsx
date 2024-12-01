@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
+import Header from './Header';
+import Footer from './Footer';
 
 interface Component {
   name: string;
@@ -73,8 +75,13 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF9F9] py-8">
-      <div className="container mx-auto px-4">
+    <div className="flex flex-col min-h-screen bg-[#FAF9F9]">
+
+      <div className="pb-10">
+        <Header />
+      </div>
+   
+      <div className="container mx-auto px-4 flex-grow">
         <div className="bg-[#BEE3DB] rounded-lg shadow-lg overflow-hidden">
           <div className="md:flex">
             <div className="md:flex-shrink-0">
@@ -112,13 +119,14 @@ export default function ProductPage() {
                   onClick={handleCheckout}
                   className="bg-[#555B6E] text-white hover:bg-[#555B6E]/90"
                 >
-                  Proceed to Checkout
+                  Proceder al Pago
                 </Button>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

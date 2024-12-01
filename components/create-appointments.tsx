@@ -72,7 +72,7 @@ export default function CreateAppointment() {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-6 text-[#555B6E]">Create Appointment</h2>
-      <Card className="bg-[#BEE3DB]">
+      <Card className="bg-[#D6E9E5] shadow-md">
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-4">
             <div>
@@ -80,7 +80,7 @@ export default function CreateAppointment() {
               <Controller
                 name="date"
                 control={control}
-                render={({ field }) => <Input type="date" {...field} className="w-full" />}
+                render={({ field }) => <Input type="date" {...field} className="w-full border border-gray-300" />}
               />
               {errors.date && <p className="text-red-500 text-sm mt-1">{errors.date.message}</p>}
             </div>
@@ -92,7 +92,7 @@ export default function CreateAppointment() {
                 control={control}
                 render={({ field }) => (
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <SelectTrigger>
+                    <SelectTrigger className='border border-gray-300'>
                       <SelectValue placeholder="Select a time slot" />
                     </SelectTrigger>
                     <SelectContent>
@@ -113,7 +113,7 @@ export default function CreateAppointment() {
               <Controller
                 name="itemName"
                 control={control}
-                render={({ field }) => <Input {...field} className="w-full" />}
+                render={({ field }) => <Input {...field} className="w-full border border-gray-300" />}
               />
               {errors.itemName && <p className="text-red-500 text-sm mt-1">{errors.itemName.message}</p>}
             </div>
@@ -125,7 +125,7 @@ export default function CreateAppointment() {
                 control={control}
                 render={({ field }) => (
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <SelectTrigger>
+                    <SelectTrigger className='border border-gray-300'>
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -146,7 +146,7 @@ export default function CreateAppointment() {
               <Controller
                 name="description"
                 control={control}
-                render={({ field }) => <Textarea {...field} className="w-full" />}
+                render={({ field }) => <Textarea {...field} className="w-full border border-gray-300" />}
               />
               {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>}
             </div>

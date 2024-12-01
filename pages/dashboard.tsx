@@ -9,7 +9,7 @@ import CreateAppointment from '@/components/create-appointments'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-const tabs = ['My Listings', 'My Appointments', 'Create Appointment']
+const tabs = ['Mis Productos', 'Mis Citas', 'Crear Cita']
 
 export default function Dashboard() {
   const { data: session } = useSession()
@@ -24,7 +24,7 @@ export default function Dashboard() {
     <div className="min-h-screen flex flex-col bg-[#FAF9F9]">
       <Header />
       <div className="container mx-auto p-4 sm:p-6 flex-grow">
-        <h1 className="text-2xl font-bold mb-6 text-[#555B6E]">Welcome, {session.user?.name}</h1>
+        <h1 className="text-2xl font-bold mb-6 text-[#555B6E]">Bienvenido, {session.user?.name}</h1>
         <div className="flex flex-col sm:flex-row">
           {/* Mobile dropdown */}
           <div className="sm:hidden mb-4">
@@ -78,9 +78,9 @@ export default function Dashboard() {
 
           {/* Main content */}
           <div className="w-full sm:w-3/4">
-            {selectedTab === 'My Listings' && <MyListings />}
-            {selectedTab === 'My Appointments' && <MyAppointments />}
-            {selectedTab === 'Create Appointment' && <CreateAppointment />}
+            {selectedTab === 'Mis Productos' && <MyListings />}
+            {selectedTab === 'Mis Citas' && <MyAppointments />}
+            {selectedTab === 'Crear Cita' && <CreateAppointment />}
           </div>
         </div>
       </div>
