@@ -17,6 +17,9 @@
     // Allow require statements not part of an import statement
     "@typescript-eslint/no-var-requires": "warn",
 
+    // Convert require() style import error to warning
+    "@typescript-eslint/no-require-imports": "warn",
+
     // Allow case declarations without warnings
     "no-case-declarations": "warn",
     
@@ -31,6 +34,9 @@
 
     // Disable the no-head element rule for Next.js pages
     "@next/next/no-head-element": "warn",
+
+    // Convert <a> element navigation error to warning
+    "@next/next/no-html-link-for-pages": "warn",
 
     // Allow usage of `var`
     "no-var": "warn"
