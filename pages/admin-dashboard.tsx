@@ -35,7 +35,7 @@ interface Listing {
   imageGallery?: Array<string>;
 }
 
-const categories = ['tools', 'electronics', 'mobility devices', 'outdoors', 'miscellaneous'];
+const categories = ['tools', 'electronics', 'mobility device', 'outdoors', 'miscellaneous'];
 
 export default function AdminDashboard() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
