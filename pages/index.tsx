@@ -2,6 +2,7 @@ import Image from "next/image";
 import localFont from "next/font/local";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import HeroSection from "@/components/hero-section";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,7 +20,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex flex-1 items-center justify-center">
-        <div>Hola</div>
+        <HeroSection />
       </main>
       <Footer />
     </div>
