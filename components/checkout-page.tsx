@@ -12,6 +12,8 @@ import convertToSubcurrency from "@/lib/convert-to-subcurrency";
 
 const CheckoutPage = ({ amount, listingId }: { amount: number; listingId: string }) => {
   const stripe = useStripe();
+
+  console.log('this is the amount', amount)
   const elements = useElements();
   const { data: session } = useSession();
   const router = useRouter();
@@ -89,7 +91,7 @@ const CheckoutPage = ({ amount, listingId }: { amount: number; listingId: string
       elements,
       clientSecret: data.clientSecret,
       confirmParams: {
-        return_url: `http://www.localhost:3000/payment-success?amount=${amount.toString()}`,
+        return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
       },
     });
 
