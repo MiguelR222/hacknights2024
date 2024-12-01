@@ -8,10 +8,16 @@ export interface IListing extends Document {
 }
 
 const ListingSchema: Schema = new Schema({
+    userId: { type: String, required: true },
     name: { type: String, required: true },
     price: { type: Number, required: true },
     description: { type: String, required: true },
-    category: { type: String, required: true },
+    category: { 
+        type: String, 
+        enum: ['tools', 'electronics', 'mobility device', 'outdoor', 'miscellaneous'], 
+        default: 'miscellaneous', 
+        required: true 
+    },
     components: {
         name: { type: String, required: true },
         description: { type: String, required: true },
