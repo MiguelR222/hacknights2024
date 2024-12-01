@@ -2,6 +2,19 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import connectDB from "@/lib/mongodb";
 
+declare module "next-auth" {
+  interface Session {
+      user: {
+          id: string; 
+          role: "ADMIN" | "USER" | "AFFILIATE";
+          name?: string; 
+          email?: string;
+          image?: string; 
+          rentals?: any;
+      };
+  }
+}
+
 export const authOptions = ({
   providers: [
     GoogleProvider({
@@ -31,6 +44,10 @@ export const authOptions = ({
       }
       const userRecord = await db.connection.db.collection('users').findOne({ email: session.user.email });
 
+      if (token.role && session.user) {
+        session.user.role = token.role as "ADMIN" | "USER";
+      }
+
       if (userRecord) {
         session.user.id = userRecord._id;
       } else {
@@ -48,11 +65,32 @@ export const authOptions = ({
       const existingUser = await db.connection.db.collection('users').findOne({ email: user.email });
 
       if (!existingUser) {
-        await db.connection.db.collection('users').insertOne({ email: user.email, name: user.name, image: user.image });
+        await db.connection.db.collection('users').insertOne({ email: user.email, name: user.name, image: user.image, role: "USER" });
       }
 
       return true;
     },
+    async jwt({ token }: { token: any }) {
+      const db = await connectDB();
+      if (!db.connection || !db.connection.db) {
+        throw new Error("Database connection is not established");
+      }
+      if (!token.sub) return token;
+
+      const existingUser = await db.connection.db.collection('users').findOne({ email: token.email });
+
+      if (!existingUser) {
+        await db.connection.db.collection('users').insertOne({ email: token.email, name: token.name, image: token.image, role: "USER" });
+      }
+
+      if (!existingUser) return token;
+
+      token.role = existingUser.role;
+      token.name = existingUser.name;
+      token.email = existingUser.email;
+
+      return token;
+  }
   },
   secret: process.env.NEXTAUTH_SECRET,
 });
