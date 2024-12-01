@@ -1,6 +1,6 @@
-'use client'
+"use client";
 import React from "react";
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -11,7 +11,7 @@ import {
   PopoverButton,
   PopoverGroup,
   PopoverPanel,
-} from '@headlessui/react'
+} from "@headlessui/react";
 import {
   ArrowPathIcon,
   Bars3Icon,
@@ -20,9 +20,13 @@ import {
   FingerPrintIcon,
   SquaresPlusIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import {LoginButton} from './login-button'; 
+} from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  PhoneIcon,
+  PlayCircleIcon,
+} from "@heroicons/react/20/solid";
+import { LoginButton } from "./login-button";
 
 // const products = [
 // { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
@@ -32,24 +36,23 @@ import {LoginButton} from './login-button';
 // { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
 // ]
 const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
-]
+  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
+  { name: "Contact sales", href: "#", icon: PhoneIcon },
+];
 
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-green-600 w-full">
-      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+    <header className="bg-gray-800 w-full">
+      <nav
+        aria-label="Global"
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+      >
         <div className="flex items-center justify-between px-4 p-6 lg:px-8">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
-              alt=""
-              src="/props/logo_negro_h.svg"
-              className="h-8 w-auto"
-            />
+            <img alt="" src="/props/logo_blanco_h.svg" className="size-3/5 " />
           </a>
           <div className="flex ml-5 items-center">
             {/* <Popover className="relative">
@@ -108,23 +111,35 @@ const Header = () => {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="flex text-sm/6 font-semibold text-white items-center">
-            Features
+          <a
+            href="#"
+            className="flex text-sm/6 font-semibold text-white items-center hover:text-orange-200"
+          >
+            
           </a>
-          <a href="#" className="flex text-sm/6 font-semibold text-white items-center">
+          <a
+            href="#"
+            className="flex text-sm/6 font-semibold text-white items-center hover:text-orange-200"
+          >
             Marketplace
           </a>
-          <a href="#" className="flex text-sm/6 font-semibold text-white items-center">
+          <a
+            href="#"
+            className="flex text-sm/6 font-semibold text-white items-center hover:text-orange-200"
+          >
             Company
           </a>
-          <LoginButton/>
+          <LoginButton />
         </PopoverGroup>
       </nav>
-      <div>
-      </div>
-      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+      <div></div>
+      <Dialog
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+        className="lg:hidden"
+      >
         <div className="fixed inset-0 z-10" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gr-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
@@ -168,12 +183,6 @@ const Header = () => {
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
-                  F
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
                   Marketplace
                 </a>
                 <a
@@ -182,13 +191,14 @@ const Header = () => {
                 >
                   Company
                 </a>
+                
               </div>
             </div>
           </div>
         </DialogPanel>
       </Dialog>
     </header>
-  )
-}
+  );
+};
 
 export default Header;

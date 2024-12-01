@@ -29,7 +29,7 @@ export function LoginButton() {
         router.push('/auth/login')
     }
 
-  const buttonClasses = "bg-[#BEE3DB] hover:bg-[#555B6E] text-[#555B6E] hover:text-white"
+  const buttonClasses = "bg-[#FFFFFF] hover:bg-[#FFD6BA] text-[#555B6E] hover:text-black"
 
   if (isSignedIn && user) {
     return (
