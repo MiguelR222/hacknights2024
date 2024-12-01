@@ -40,7 +40,7 @@ export default function HeroSection() {
         </div>
         <div className="mx-auto max-w-5xl py-24 sm:py-32 lg:py-40">
           <div className="hidden lg:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full font-semibold px-3 py-1 text-sm/6 text-[#1f2536] ring-1 ring-gray-900/10 hover:ring-[#6b748b]">
+            <div className="relative rounded-full font-bold px-6 py-1 text-sm/9 text-[#1f2536] ring-1 ring-gray-900 hover:ring-[#86888d]">
               Una iniciativa local para soluciones globales.
             </div>
           </div>
