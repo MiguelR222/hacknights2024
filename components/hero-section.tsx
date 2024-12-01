@@ -16,14 +16,14 @@ export default function HeroSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="relative w-full h-full">
+    <div className=" ">
       <Image
         src="/heroSectionBackground.jpg"
         alt="Background"
         layout="fill"
         objectFit="cover"
         quality={100}
-        className="absolute inset-0 z-0 opacity-35"
+        className="absolute inset-0 z-0 opacity-75 w-full h-full"
       />
       <div className="relative isolate px-6 pt-14 pb-20 lg:px-8">
         <div
@@ -38,17 +38,17 @@ export default function HeroSection() {
             className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           />
         </div>
-        <div className="mx-auto max-w-5xl py-24 sm:py-32 lg:py-40">
-          <div className="hidden lg:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full font-bold px-6 py-1 text-sm/9 text-[#1f2536] ring-1 ring-gray-900 hover:ring-[#86888d]">
+        <div className="mx-auto max-w-5xl py-24 sm:py-32 lg:py-40 ">
+          <div className="hidden lg:mb-8 sm:flex sm:justify-center ">
+            <div className="relative rounded-full font-bold px-8 py-3 text-sm/8 text-[#1f2536] ring-1 ring-gray-900 ] bg-orange-200">
               Una iniciativa local para soluciones globales.
             </div>
           </div>
           <div className="text-center">
-            <h1 className="text-center text-4xl font-semibold tracking-tight text-[#1f2536] sm:text-6xl">
-              Deja que tus herramientas trabajen por ti: Gana dinero y cuida el planeta.
+            <h1 className="text-center text-4xl font-semibold tracking-tight text-[#1f2536] sm:text-6xl bg-white p-9 m-4   ">
+              Deja que tus herramientas trabajen por ti:<br></br> Gana dinero y cuida el planeta.
             </h1>
-            <p className="mt-6 text-pretty text-lg font-semibold text-[#1f2536] lg:text-xl/8 w-full max-w-3xl mx-auto">
+            <p className="mt-6 text-pretty text-lg font-semibold text-[#1f2536] lg:text-xl/8 w-full max-w-3xl mx-auto ">
               Comparte las herramientas que ya no usas con tu comunidad, obtén ingresos adicionales y contribuye a un futuro más sostenible. ¡Es fácil, seguro y ecológico!
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
