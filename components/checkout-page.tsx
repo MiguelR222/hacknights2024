@@ -13,7 +13,6 @@ import convertToSubcurrency from "@/lib/convert-to-subcurrency";
 const CheckoutPage = ({ amount, listingId }: { amount: number; listingId: string }) => {
   const stripe = useStripe();
 
-  console.log('this is the amount', amount)
   const elements = useElements();
   const { data: session } = useSession();
   const router = useRouter();
@@ -21,32 +20,6 @@ const CheckoutPage = ({ amount, listingId }: { amount: number; listingId: string
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const createPaymentIntent = async () => {
-  //   try {
-  //     const response = await fetch("/api/create-payment-intent", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         amount: convertToSubcurrency(amount),
-  //         metadata: {
-  //           listingId,
-  //           userId: session?.user.id,
-  //         },
-  //       }),
-  //     });
-
-  //     const data = await response.json();
-  //     if (response.ok) {
-  //       setClientSecret(data.clientSecret);
-  //     } else {
-  //       setErrorMessage(data.error || "Failed to create payment intent");
-  //     }
-  //   } catch (error) {
-  //     setErrorMessage("An error occurred while creating payment intent");
-  //   }
-  // };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -56,7 +29,6 @@ const CheckoutPage = ({ amount, listingId }: { amount: number; listingId: string
       return;
     }
 
-    // Create the payment intent when the user submits the form
     const response = await fetch("/api/create-payment-intent", {
       method: "POST",
       headers: {

@@ -15,15 +15,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         category,
       } = req.body;
 
-      // Validate required fields
         if (!userId || !name || !price || !description) {
-            console.log('Missing required fields');
         return res
           .status(400)
           .json({ error: 'Missing required fields', success: false });
       }
 
-      // Validate category
       const validCategories = [
         'tools',
         'electronics',
@@ -32,15 +29,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         'miscellaneous',
       ];
         if (!validCategories.includes(category)) {
-          console.log('Invalid category');
         return res
           .status(400)
           .json({ error: 'Invalid category', success: false });
       }
 
-      // Validate status
       const validStatuses = ['available', 'rented', 'pending', 'cancelled'];
-      // Create the new listing
+
       const newListing = await Listing.create({
         userId,
         name,

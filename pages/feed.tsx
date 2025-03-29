@@ -82,7 +82,6 @@ export default function Feed() {
       <Header />
       <div className="container mx-auto p-4 sm:p-6 flex-grow">
         <div className="flex flex-col sm:flex-row">
-          {/* Mobile dropdown filter */}
           <div className="sm:hidden mb-4">
             <div className="relative">
               <button
@@ -108,7 +107,6 @@ export default function Feed() {
             </div>
           </div>
 
-          {/* Desktop sidebar filter */}
           <div className="hidden sm:block w-1/4 pr-6">
             <h2 className="text-xl font-bold mb-4 text-[#555B6E]">Categorias</h2>
             <ul>
@@ -128,8 +126,6 @@ export default function Feed() {
               ))}
             </ul>
           </div>
-
-          {/* Main content */}
           <div className="w-full sm:w-3/4">
             <h2 className="text-2xl font-bold mb-6 text-[#555B6E] capitalize">
               {selectedCategory === 'all' ? 'Todos los productos' : categoryTranslations[selectedCategory]}

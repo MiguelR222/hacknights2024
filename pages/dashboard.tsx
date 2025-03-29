@@ -26,7 +26,6 @@ export default function Dashboard() {
       <div className="container mx-auto p-4 sm:p-6 flex-grow">
         <h1 className="text-2xl font-bold mb-6 text-[#555B6E]">Bienvenido, {session.user?.name}</h1>
         <div className="flex flex-col sm:flex-row">
-          {/* Mobile dropdown */}
           <div className="sm:hidden mb-4">
             <div className="relative">
               <button
@@ -55,7 +54,6 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Desktop sidebar */}
           <div className="hidden sm:block w-1/4 pr-6">
             <h2 className="text-xl font-bold mb-4 text-[#555B6E]">Dashboard</h2>
             <ul>
@@ -75,8 +73,6 @@ export default function Dashboard() {
               ))}
             </ul>
           </div>
-
-          {/* Main content */}
           <div className="w-full sm:w-3/4">
             {selectedTab === 'Mis Productos' && <MyListings />}
             {selectedTab === 'Mis Citas' && <MyAppointments />}

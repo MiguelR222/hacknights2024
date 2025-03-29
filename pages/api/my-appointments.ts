@@ -7,19 +7,17 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await connectDB();
 
-  // Fetch session using getServerSession
   const session = await getServerSession(req, res, authOptions);
 
   if (!session || !session.user?.id) {
     return res.status(401).json({ error: 'Unauthorized: No user session found', success: false });
   }
 
-  const userId = session.user.id;  // Use the userId from the session
+  const userId = session.user.id;  
 
-  // Handle GET request to fetch appointments for the logged-in user
   if (req.method === 'GET') {
     try {
-      const appointments = await Appointment.find({ userId }).lean();  // Fetch appointments by userId
+      const appointments = await Appointment.find({ userId }).lean();  
       if (!appointments.length) {
         return res.status(404).json({ error: 'No appointments found', success: false });
       }
@@ -30,7 +28,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   }
 
-  // Handle POST request to create a new appointment for the logged-in user
   else if (req.method === 'POST') {
     try {
       const { date, timeSlot, itemName, category, status } = req.body;
@@ -45,10 +42,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         timeSlot,
         itemName,
         category,
-        status: status || 'upcoming', // Default to 'upcoming' if status is not provided
+        status: status || 'upcoming', 
       });
 
-      await newAppointment.save();  // Save the new appointment to the database
+      await newAppointment.save();  
       return res.status(201).json({ data: newAppointment, success: true });
     } catch (error) {
       console.error(error);
@@ -56,7 +53,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   }
 
-  // Handle unsupported HTTP methods
   else {
     return res.status(405).json({ error: 'Method not allowed', success: false });
   }

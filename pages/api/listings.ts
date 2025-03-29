@@ -7,10 +7,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'GET') {
     try {
-      const { listingId } = req.query; // Get listingId from query parameters
+      const { listingId } = req.query; 
 
       if (listingId) {
-        // If listingId is provided, find the listing that matches it
+
         const listing = await Listing.findById(listingId);
 
         if (!listing) {
@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         return res.status(200).json({ data: listing, success: true });
       } else {
-        // If no listingId, fetch all listings
+
         const listings = await Listing.find({});
 
         if (!listings.length) {

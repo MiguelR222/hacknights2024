@@ -17,10 +17,10 @@ export default function MyAppointments() {
     const [error, setError] = useState<string | null>(null);
   
     useEffect(() => {
-      // Fetch appointments from the new API route
+      
       const fetchAppointments = async () => {
         try {
-          const response = await fetch('/api/my-appointments');  // API route updated
+          const response = await fetch('/api/my-appointments');  
           if (!response.ok) {
             throw new Error('Failed to fetch appointments');
           }
@@ -28,12 +28,12 @@ export default function MyAppointments() {
           const data = await response.json();
   
           if (data.success) {
-            setAppointments(data.data);  // Update appointments with the fetched data
+            setAppointments(data.data); 
           } else {
-            setError(data.error);  // Set the error if any
+            setError(data.error);  
           }
         } catch (error: any) {
-          setError(error.message);  // Handle any fetch errors
+          setError(error.message);
         }
       };
   
@@ -41,12 +41,10 @@ export default function MyAppointments() {
     }, []);
 
   const handleReschedule = (id: string) => {
-    // Implement reschedule logic
     console.log('Reschedule appointment', id)
   }
 
   const handleCancel = (id: string) => {
-    // Implement cancel logic
     console.log('Cancel appointment', id)
   }
 

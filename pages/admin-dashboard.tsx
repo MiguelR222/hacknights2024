@@ -16,7 +16,6 @@ interface Appointment {
   date: string;
   itemName: string;
   description: string;
-  // Add other relevant fields
 }
 
 interface Listing {
@@ -94,11 +93,6 @@ export default function AdminDashboard() {
       ...prevListing,
       category: value,
     }));
-  };
-
-  const handleImageUpload = (type: 'poster' | 'gallery') => {
-    // Implement Cloudinary widget opening logic here
-    console.log(`Opening Cloudinary widget for ${type}`);
   };
 
   const handleCreateListing = async () => {

@@ -6,13 +6,12 @@ import { Schema, model } from 'mongoose';
 import connectDB from '@/lib/mongodb';
 import Rental from '@/models/rental';
 
-// Initialize Stripe with your secret key
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 
 export const config = {
   api: {
-    bodyParser: false, // Disable Next.js's default body parsing to use raw body
+    bodyParser: false, 
   },
 };
 

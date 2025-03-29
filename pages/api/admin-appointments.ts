@@ -7,19 +7,17 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await connectDB();
 
-  // Fetch session using getServerSession
   const session = await getServerSession(req, res, authOptions);
 
   if (!session || !session.user?.id) {
     return res.status(401).json({ error: 'Unauthorized: No user session found', success: false });
   }
 
-  const userId = session.user.id;  // Use the userId from the session
+  const userId = session.user.id; 
 
-  // Handle GET request to fetch appointments for the logged-in user
   if (req.method === 'GET') {
     try {
-      const appointments = await Appointment.find({status: "upcoming" }).lean();  // Fetch appointments by userId
+      const appointments = await Appointment.find({status: "upcoming" }).lean(); 
       if (!appointments.length) {
         return res.status(404).json({ error: 'No appointments found', success: false });
       }

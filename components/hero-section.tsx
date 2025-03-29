@@ -6,7 +6,6 @@ import Image from 'next/image'
 const HeroSection: FC = () => {
   return (
     <div className="relative flex-grow flex flex-col items-center justify-center min-h-screen">
-      {/* Imagen de fondo */}
       <Image
         src="/heroSectionBackground.jpg"
         alt="Background"

@@ -29,7 +29,7 @@ export default function Home() {
         const response = await fetch(`/api/listings?listingId=${listingId}`);
         const data = await response.json();
         if (response.ok && data.success) {
-          setAmount(data.data.price); // Assuming the price field is in data.data
+          setAmount(data.data.price);
         } else {
           setErrorMessage(data.error || "Failed to fetch listing amount");
         }

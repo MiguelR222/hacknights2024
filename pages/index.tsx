@@ -18,14 +18,14 @@ const geistMono = localFont({
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Header permanece en la parte superior */}
+    
       <Header />
       
       <main className="relative flex-grow flex items-center justify-center min-h-screen">
         <HeroSection />
       </main>
       
-      {/* Footer se queda al fondo */}
+   
       <Footer />
     </div>
   );

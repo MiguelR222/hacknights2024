@@ -41,10 +41,9 @@ export default function CreateAppointment() {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
-    setError(null); // Reset error before submitting
+    setError(null); 
 
     try {
-      // Send data to API
       const response = await fetch('/api/my-appointments', {
         method: 'POST',
         headers: {
@@ -56,10 +55,8 @@ export default function CreateAppointment() {
       const result = await response.json();
 
       if (response.ok) {
-        // Handle successful appointment creation, e.g., display a success message or redirect
         alert('Appointment created successfully');
       } else {
-        // Handle API errors
         setError(result.error || 'Failed to create appointment');
       }
     } catch (error) {

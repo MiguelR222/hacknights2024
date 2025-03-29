@@ -26,7 +26,6 @@ export default function MyListings() {
         }
 
           const data = await response.json();
-          console.log('listing perron', data.data)
         setListings(data.data); 
       } catch (err: any) {
         console.error('Error fetching listings:', err.message);
